@@ -41,6 +41,11 @@
 
 namespace :import do
 
+  task :routes => [:environment] do
+    Route.delete_all
+    Cologne::Lines.new.process
+  end
+
   desc "Get station data"
   task :stops => [:environment] do
     require 'open-uri'
