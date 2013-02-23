@@ -50,7 +50,7 @@ namespace :import do
     counter = 0
     skipped_names = []
     hash = {}
-    Station.destroy_all
+    Stop.destroy_all
     CSV.new(open('https://raw.github.com/schienenliebe/kvb_geo/master/hst_testdata.csv'), col_sep: ";").each do |line|
     # CSV.new(open('/Volumes/code/kvb_geo/hst_testdata.csv'), col_sep: ";").each do |line|
       hash[line[2]] = {:id => line[0], :name => line[1]}
