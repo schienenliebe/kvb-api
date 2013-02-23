@@ -1,7 +1,7 @@
 require 'csv'
 
 class AgenciesController < ApplicationController
-  respond_to :json, :csv
+  respond_to :html, :json
 
   def index
     @agencies = Agency.all
