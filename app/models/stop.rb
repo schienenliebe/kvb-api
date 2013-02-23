@@ -3,7 +3,6 @@ class Stop < ActiveRecord::Base
   belongs_to :agency
 
   def self.gtfs_attributes
-    "stop_id","stop_code","stop_name","stop_lon","stop_lat"
     {
       agency_stop_id: 'stop_id',
       code: 'stop_code',
