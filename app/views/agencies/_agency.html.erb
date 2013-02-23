@@ -1,4 +1,7 @@
 <tr>
   <td><strong><%= agency.name %></strong></td>
-  <td><%= link_to('Agency.txt', "/agencies/#{agency.id}/agency.txt") %></td>
+  <td>
+    <%= link_to('agency.txt', "/agencies/#{agency.id}/agency.txt") %>
+    <%= link_to('stops.txt', "/agencies/#{agency.id}/stops.txt") %>
+  </td>
 </tr>
