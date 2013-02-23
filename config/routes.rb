@@ -1,6 +1,9 @@
 KvbApi::Application.routes.draw do
 
-  resources :stops, :only => :index
+  resources :agencies do
+    match 'agency' => 'agencies#gtfs'
+    resources :stops, :only => :index
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

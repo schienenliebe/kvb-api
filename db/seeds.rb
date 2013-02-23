@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Agency.create(
+  name: 'Kölner Verkehrs-Betriebe AG',
+  url: 'http://www.kvb-koeln.de/',
+  timezone: 'Europe/Berlin',
+  lang: 'de',
+  phone: '+49 (0) 221 5470',
+  fare_url: 'http://www.kvb-koeln.de/german/tarif/index.html')
