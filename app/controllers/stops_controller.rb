@@ -1,10 +1,10 @@
 class StopsController < ApplicationController
+  respond_to :html, :json, :txt
 
   def index
     @stops = agency.stops.all
-    respond_to do |format|
-      format.html
-      format.json { render :json => @stops }
+    respond_with @stops do |format|
+      format.txt { render_gtfs(@stops, Stop) }
     end
   end
 
