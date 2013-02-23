@@ -11,13 +11,13 @@ class Route < ActiveRecord::Base
   def self.gtfs_attributes
     {
       id: 'route_id',
-      agency_id: 'agency_id'
-      color: 'route_color'
-      desc: 'route_desc'
-      route_type: 'route_type'
-      long_name: 'route_long_name'
-      short_name: 'route_short_name'
-      text_color: 'route_text_color'
+      agency_id: 'agency_id',
+      color: 'route_color',
+      desc: 'route_desc',
+      route_type: 'route_type',
+      long_name: 'route_long_name',
+      short_name: 'route_short_name',
+      text_color: 'route_text_color',
       url: 'route_url'
     }
   end
