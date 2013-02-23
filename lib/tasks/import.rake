@@ -1,5 +1,5 @@
 # encoding: utf-8
-# https://raw.github.com/bitboxer/kvb_geo/master/kvb_stops.json
+# https://raw.github.com/schienenliebe/kvb_geo/master/vrs_kvb_stops.json
 
 # t.integer :stop_id, null: false
 # t.string :stop_code
@@ -15,21 +15,62 @@
 # t.integer :wheelchair_boarding
 # t.timestamps
 
-# namespace :import do
+# Structure of Open Street Map
+#
+# {
+#   "type"=>"Feature", 
+#   "properties"=>{
+#     "type"=>"node", 
+#     "id"=>"361716", 
+#     "tags"=>{
+#       "VRS:gemeinde"=>"KÖLN", 
+#       "VRS:ortsteil"=>"Innenstadt", 
+#       "VRS:ref"=>"11509", 
+#       "name"=>"Eifelplatz", 
+#       "railway"=>"tram_stop", 
+#       "wheelchair"=>"yes"
+#     }, 
+#     "relations"=>[], 
+#     "meta"=>{}
+#   }, 
+#   "geometry"=>{
+#     "type"=>"Point", 
+#     "coordinates"=>[6.9434608, 50.9232266]
+#   }
+# }
 
-#   desc "Get station data"
-#   task :stops => [:environment] do
-#     require 'open-uri'
-#     stations = JSON.parse(open('https://raw.github.com/bitboxer/kvb_geo/master/kvb_stops.json').read)   
-#     stations.each do |station|
-#       Stop.create(
-#         stop_id: station["kvb-id"], 
-#         stop_name: station["station"], 
-#         stop_lat: station["points"].first["lat"], 
-#         stop_lon: station["points"].first["long"], 
-#         location_type: 0, 
-#         stop_url: "http://www.kvb-koeln.de/german/hst/overview/#{station['kvb-id']}/"
-#       )
-#     end
-#   end
-# end
+namespace :import do
+
+  desc "Get station data"
+  task :stops => [:environment] do
+    require 'open-uri'
+    skipped = 0
+    created = 0
+    stations = JSON.parse(open('https://raw.github.com/schienenliebe/kvb_geo/master/vrs_kvb_stops.json').read)   
+    stations["features"].each do |feature|
+      station = feature["properties"]["tags"]
+      puts "-> Importing Stop #{station['VRS:ref']}"      
+      station_lat = feature["geometry"]["coordinates"].first
+      station_lon = feature["geometry"]["coordinates"].second
+      puts "-> Creating #{station['VRS:ref']}"
+      if station['VRS:ref'].blank? && station['ref:VRS'].blank?
+        puts "-> skipping #{station["name"]}"
+        skipped += 1
+      else
+        stop = Stop.create(
+          agency_stop_id: station['VRS:ref'] || station['ref:VRS'],
+          agency_id: 1,
+          name: station['name'],
+          lat: station_lat,
+          lon: station_lon,
+          location_type: 0,
+          wheelchair_boarding: station['wheelchair'],
+          url: station['webseite']        
+        )
+        created += 1
+        puts "-> Stop #{station['VRS:ref']} created #{stop.id}"      
+      end
+    end
+    puts "-> Skipped #{skipped} :: Created: #{created}"
+  end
+end

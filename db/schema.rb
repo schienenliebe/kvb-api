@@ -14,17 +14,18 @@
 ActiveRecord::Schema.define(:version => 20130223113101) do
 
   create_table "stops", :force => true do |t|
-    t.integer  "stop_id",             :null => false
-    t.string   "stop_code"
-    t.string   "stop_name",           :null => false
-    t.text     "stop_desc"
-    t.float    "stop_lat",            :null => false
-    t.float    "stop_lon",            :null => false
+    t.integer  "agency_stop_id",      :null => false
+    t.integer  "agency_id",           :null => false
+    t.string   "code"
+    t.string   "name",                :null => false
+    t.text     "desc"
+    t.float    "lat",                 :null => false
+    t.float    "lon",                 :null => false
     t.integer  "zone_id"
-    t.string   "stop_url"
+    t.string   "url"
     t.integer  "location_type"
     t.integer  "parent_station"
-    t.string   "stop_timezone"
+    t.string   "timezone"
     t.integer  "wheelchair_boarding"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
