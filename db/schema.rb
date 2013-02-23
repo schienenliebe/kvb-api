@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223113101) do
+ActiveRecord::Schema.define(:version => 20130223120746) do
+
+  create_table "agencies", :force => true do |t|
+    t.string   "name",       :null => false
+    t.string   "url",        :null => false
+    t.string   "timezone",   :null => false
+    t.string   "lang"
+    t.string   "phone"
+    t.string   "fare_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "stops", :force => true do |t|
     t.integer  "agency_stop_id",      :null => false
