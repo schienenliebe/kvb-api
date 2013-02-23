@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223120746) do
+ActiveRecord::Schema.define(:version => 20130223153920) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name",       :null => false
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(:version => 20130223120746) do
     t.string   "lang"
     t.string   "phone"
     t.string   "fare_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "routes", :force => true do |t|
+    t.integer  "agency_id",  :null => false
+    t.string   "short_name", :null => false
+    t.string   "long_name",  :null => false
+    t.text     "desc"
+    t.integer  "route_type", :null => false
+    t.string   "url"
+    t.string   "color"
+    t.string   "text_color"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
