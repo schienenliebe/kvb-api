@@ -18,23 +18,23 @@
 # Structure of Open Street Map
 #
 # {
-#   "type"=>"Feature", 
+#   "type"=>"Feature",
 #   "properties"=>{
-#     "type"=>"node", 
-#     "id"=>"361716", 
+#     "type"=>"node",
+#     "id"=>"361716",
 #     "tags"=>{
-#       "VRS:gemeinde"=>"KÖLN", 
-#       "VRS:ortsteil"=>"Innenstadt", 
-#       "VRS:ref"=>"11509", 
-#       "name"=>"Eifelplatz", 
-#       "railway"=>"tram_stop", 
+#       "VRS:gemeinde"=>"KÖLN",
+#       "VRS:ortsteil"=>"Innenstadt",
+#       "VRS:ref"=>"11509",
+#       "name"=>"Eifelpstation_latz",
+#       "railway"=>"tram_stop",
 #       "wheelchair"=>"yes"
-#     }, 
-#     "relations"=>[], 
+#     },
+#     "relations"=>[],
 #     "meta"=>{}
-#   }, 
+#   },
 #   "geometry"=>{
-#     "type"=>"Point", 
+#     "type"=>"Point",
 #     "coordinates"=>[6.9434608, 50.9232266]
 #   }
 # }
@@ -55,15 +55,15 @@ namespace :import do
     # CSV.new(open('/Volumes/code/kvb_geo/hst_testdata.csv'), col_sep: ";").each do |line|
       hash[line[2]] = {:id => line[0], :name => line[1]}
     end
-    stations = JSON.parse(open('https://raw.github.com/schienenliebe/kvb_geo/master/vrs_kvb_stops.json').read)   
+    stations = JSON.parse(open('https://raw.github.com/schienenliebe/kvb_geo/master/vrs_kvb_stops.json').read)
     stations["features"].each do |feature|
       counter += 1
       station = feature["properties"]["tags"]
-      next if ["DB Station & Service AG"].include?(station['operator'])      
-      next if ["14479"].include?(station['VRS:ref'] || station['ref:VRS'])      
-      puts "-> Importing Stop #{station['VRS:ref']} #{counter} / #{stations["features"].size}"      
-      station_lat = feature["geometry"]["coordinates"].first
-      station_lon = feature["geometry"]["coordinates"].second
+      next if ["DB Station & Service AG"].include?(station['operator'])
+      next if ["14479"].include?(station['VRS:ref'] || station['ref:VRS'])
+      puts "-> Importing Stop #{station['VRS:ref']} #{counter} / #{stations["features"].size}"
+      station_lon = feature["geometry"]["coordinates"].first
+      station_lat = feature["geometry"]["coordinates"].second
 
       if station['VRS:ref'].present?
         agency_stop_id = hash[station['VRS:ref']][:id]
@@ -88,7 +88,7 @@ namespace :import do
         if result
           station['VRS:ref'] = result.first
           agency_stop_id = result.second[:id]
-        else 
+        else
           puts "-> skipping #{station["name"]}... retry"
           skipped_names << station["name"]
           skipped += 1
@@ -106,10 +106,10 @@ namespace :import do
           lon: station_lon,
           location_type: 0,
           wheelchair_boarding: station['wheelchair'],
-          url: station['webseite']        
+          url: station['webseite']
         )
         created += 1
-        puts "-> Stop #{station['VRS:ref']} created #{stop.id}"      
+        puts "-> Stop #{station['VRS:ref']} created #{stop.id}"
       end
     end
     puts "-> Skipped #{skipped} :: Created: #{created}"
