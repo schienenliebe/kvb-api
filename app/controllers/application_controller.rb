@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def render_gtfs(data, type = data.first.try(:class))
     csv_string = if data.kind_of?(Array)
-      CSV.generate do |csv|
+      CSV.generate(quote_char: '"', force_quotes: true) do |csv|
         if type
           csv << type.gtfs_attributes.values
         end
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
         end
       end
     else
-      CSV.generate do |csv|
+      CSV.generate(quote_char: '"', force_quotes: true) do |csv|
         csv << record.class.gtfs_attributes.values
         csv << record.class.gtfs_attributes.keys.map { |a| record.send(a) }
       end

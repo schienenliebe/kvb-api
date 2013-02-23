@@ -3,20 +3,21 @@ class Stop < ActiveRecord::Base
   belongs_to :agency
 
   def self.gtfs_attributes
+    "stop_id","stop_code","stop_name","stop_lon","stop_lat"
     {
       agency_stop_id: 'stop_id',
-      location_type: 'stop_location_type',
-      parent_station: 'stop_parent_station',
       code: 'stop_code',
-      desc: 'stop_desc',
-      lat: 'stop_lat',
-      lon: 'stop_lon',
       name: 'stop_name',
-      timezone: 'stop_timezone',
-      url: 'stop_url',
-      wheelchair_boarding: 'stop_wheelchair_boarding',
-      zone_id: 'stop_zone_id',
-      agency_id: 'stop_agency_id'
+      lon: 'stop_lon',
+      lat: 'stop_lat'
+      # location_type: 'stop_location_type',
+      # parent_station: 'stop_parent_station',
+      # desc: 'stop_desc',
+      # timezone: 'stop_timezone',
+      # url: 'stop_url',
+      # wheelchair_boarding: 'stop_wheelchair_boarding',
+      # zone_id: 'stop_zone_id',
+      # agency_id: 'stop_agency_id'
     }
   end
 end
