@@ -1,7 +1,13 @@
 <tr>
   <td><strong><%= agency.name %></strong></td>
   <td>
-    <%= link_to('agency.txt', "/agencies/#{agency.id}/agency.txt") %>
-    <%= link_to('stops.txt', "/agencies/#{agency.id}/stops.txt") %>
+    <%= link_to('txt', "/agencies/#{agency.id}/agency.txt") %>
+  </td>
+  <td>
+    <%= link_to('txt', "/agencies/#{agency.id}/stops.txt") %>
+  </td>
+  <td>
+    <%= link_to('html', [agency, :routes]) %>
+    <%= link_to('txt', "/agencies/#{agency.id}/routes.txt") %>
   </td>
 </tr>

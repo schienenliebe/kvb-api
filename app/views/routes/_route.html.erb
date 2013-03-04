@@ -1,0 +1,9 @@
+<tr data-id="<%= route.id %>">
+  <td>
+    <%= content_tag(:i, '', class: "pull-right icon-#{route.route_type? ? 'bus' : 'train'}") -%>
+    <%= route.short_name -%>
+    <%= route.desc -%>
+  </td>
+  <td><%= route.long_name -%></td>
+  <td><%= link_to("#{@agency.name} Informationen", route.url) -%></td>
+</tr>

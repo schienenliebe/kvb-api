@@ -1,6 +1,8 @@
 class RoutesController < ApplicationController
   respond_to :html, :json, :txt
 
+  layout 'agency'
+
   def index
     @routes = agency.routes.all
     respond_with @routes do |format|
