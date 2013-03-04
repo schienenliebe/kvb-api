@@ -10,7 +10,9 @@ class AgenciesController < ApplicationController
 
   def show
     @agency = Agency.find(params[:id])
-    respond_with @agency
+    respond_with @agency do |format|
+      format.html { render layout: 'agency' }
+    end
   end
 
   def gtfs

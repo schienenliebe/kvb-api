@@ -1,0 +1,13 @@
+<div class="page-header">
+  <h1>Informationen zu '<%= @agency.name %>'</h1>
+</div>
+
+<p>
+  Hier wird es in Zukunft mehr Informationen geben. Zur Zeit gibt es die Daten
+  die Sie oben in der Navigation finden. Alles weitere finden Sie auf den
+  offiziellen Seiten: '<%= @agency.name %>'.
+</p>
+<p>
+  Webseite: <%= @agency.url.presence || content_tag(:em, 'nicht verfügbar') %><br>
+  Telefon: <%= @agency.phone.presence || content_tag(:em, 'nicht verfügbar') %>
+</p>
