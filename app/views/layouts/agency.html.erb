@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KvbApi</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <%= link_to('Koeln API', :root, class: 'brand') %>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="<%= controller.is_a?(AgenciesController) ? 'active' : '' %>"><%= link_to @agency.name, @agency %></li>
+            <li class="<%= controller.is_a?(StopsController) ? 'active' : '' %>"><%= link_to 'Stops', [@agency, :stops] %></li>
+            <li class="<%= controller.is_a?(RoutesController) ? 'active' : '' %>"><%= link_to 'Routes', [@agency, :routes] %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+  <div class="container container-main">
+    <%= yield %>
+  </div>
+</body>
+</html>
