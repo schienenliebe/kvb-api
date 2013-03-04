@@ -1,9 +1,15 @@
 <tr>
-  <td><strong><%= agency.name %></strong></td>
   <td>
+    <strong>
+      <%= link_to(agency.name, agency) %>
+    </strong>
+  </td>
+  <td>
+    <%= link_to('html', agency) %>
     <%= link_to('txt', "/agencies/#{agency.id}/agency.txt") %>
   </td>
   <td>
+    <%= link_to('html', [agency, :stops]) %>
     <%= link_to('txt', "/agencies/#{agency.id}/stops.txt") %>
   </td>
   <td>
