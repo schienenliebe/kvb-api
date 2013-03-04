@@ -3,6 +3,6 @@
   <td><%= stop.wheelchair_boarding? ? 'Ja' : 'Nein' -%></td>
   <td>
     <%= stop.url -%>
-    <%= link_to('Karte zeigen', '#') %>
+    <%= link_to('Karte zeigen', "http://maps.google.com/maps?hl=de&ll=#{stop.lat},#{stop.lon}&t=v&z=17") %>
   </td>
 </tr>
