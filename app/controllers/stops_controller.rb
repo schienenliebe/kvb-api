@@ -1,6 +1,8 @@
 class StopsController < ApplicationController
   respond_to :html, :json, :txt
 
+  layout 'agency'
+
   def index
     @stops = agency.stops.all
     respond_with @stops do |format|
