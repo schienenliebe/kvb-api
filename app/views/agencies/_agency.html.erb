@@ -12,6 +12,9 @@
         <br>
         <%= link_to('Strecken', [agency, :routes]) %>
         [ <%= link_to('txt', "/agencies/#{agency.id}/routes.txt") %> ]
+        <br>
+        <%= link_to('Kalender Zeiten', [agency, :calendar_services]) %>
+        [ <%= link_to('txt', "/agencies/#{agency.id}/calendar.txt") %> ]
       </p>
       <p><%= link_to('Details', agency, class: 'btn btn-primary') %></p>
     </div>

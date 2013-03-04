@@ -16,6 +16,7 @@
             <li class="<%= controller.is_a?(AgenciesController) ? 'active' : '' %>"><%= link_to @agency.name, @agency %></li>
             <li class="<%= controller.is_a?(StopsController) ? 'active' : '' %>"><%= link_to 'Stops', [@agency, :stops] %></li>
             <li class="<%= controller.is_a?(RoutesController) ? 'active' : '' %>"><%= link_to 'Routes', [@agency, :routes] %></li>
+            <li class="<%= controller.is_a?(CalendarServicesController) ? 'active' : '' %>"><%= link_to 'Kalender Zeiten', [@agency, :calendar_services] %></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

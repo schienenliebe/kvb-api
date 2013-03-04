@@ -1,6 +1,7 @@
 class Agency < ActiveRecord::Base
   attr_accessible :fare_url, :lang, :name, :phone, :timezone, :url
 
+  has_many :calendar_services
   has_many :routes
   has_many :stops
 
